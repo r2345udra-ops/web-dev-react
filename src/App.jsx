@@ -14,7 +14,41 @@ function App() {
       dueDate="Tomorrow" 
       priority="High" 
       assignedTo="Andrey"
+      status="Pending"
     />
+
+    <TaskCard 
+      title="Study React"
+      dueDate="March 26"
+      priority="Medium"
+      assignedTo="Rudra"
+      status="Pending"
+    />
+
+    <TaskCard 
+      title="Prepare Presentation"
+      dueDate="March 28"
+      priority="High"
+      assignedTo="Rudra"
+      status="Done"
+    />
+
+    <TaskCard 
+      title="Update GitHub"
+      dueDate="March 29"
+      priority="Low"
+      assignedTo="Rudra"
+      status="Pending"
+    />
+
+    <TaskCard 
+      title="Practice Props"
+      dueDate="March 30"
+      priority="Medium"
+      assignedTo="Rudra"
+      status="Done"
+    />    
+
   </>
 );
 
