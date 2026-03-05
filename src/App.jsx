@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css'
 import './components/TaskCard/TaskCard.css'
+import TaskCard from './components/TaskCard/TaskCard';
 
 
 const name = "Andrey";
@@ -8,22 +9,35 @@ const name = "Andrey";
 
 function App() {
 
-  const [tasks, updateTasks] =  useState([]);
+
+  //run on rendering
+  //useEffect(() => {console.log("use effect running")});
+
+  //run once
+  //useEffect(() => {console.log("Run once")}, []);
+
+
+
+  const [tasks, updateTasks] =  useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
   const [formData, updateFormData] = useState({
     title: "",
     priority: "High",
     dueDate: "",
   });
 
- 
+  useEffect(() => {
+      localStorage.setItem("tasks", JSON.stringify(tasks)); 
+  }, [tasks]);
 
   function addTask() {
-
   
     if (formData.title.trim() === "") {
       return;
     }
-
 
     const newTask = {
       id: Date.now(),
@@ -41,6 +55,11 @@ function App() {
       priority: "High",
       dueDate: "",
     });
+  }
+
+  function onDeleteTask(id) {
+        console.log("Deleting task");
+        updateTasks([...tasks.filter(t => t.id !== id)]);
   }
 
   return (
@@ -96,11 +115,7 @@ function App() {
     
     {
       tasks.map(task => (
-        <div key={task.id}>
-          <h3>{task.title}</h3>
-          <p>{task.priority}</p>
-          <p>{task.dueDate}</p>
-        </div>
+        <TaskCard key={task.id} {...task} onDeleteTask={() => onDeleteTask(task.id)}/>
       ))
     }
     
