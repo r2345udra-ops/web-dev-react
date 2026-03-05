@@ -65,7 +65,7 @@ function App() {
 
   // Week 2 Part 4 (Optional): Remove Last Task
   const removeLastTask = () => {
-    setTasks(tasks.slice(0, -1));
+     setTasks(tasks.slice(0, -1));
   };
 
   return (
