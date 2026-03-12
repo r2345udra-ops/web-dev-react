@@ -11,6 +11,21 @@
 // }
 
 
+
+//Alternative syntax to read props:
+
+function TaskCard({title, dueDate, priority, onDeleteTask}) {
+    return (<div className="task-item">
+        <h3>{title}</h3>
+        <span className={`task-priority ${priority.toLowerCase()}`}>{priority}</span>
+        {dueDate && <p>Due Date: {dueDate}</p>}
+        <p></p>
+        <button onClick={onDeleteTask}>Delete</button>
+    </div>);
+}
+
+
+
 //Alternative syntax to read props:
 
 function TaskCard({ title, dueDate, priority, assignedTo, status, onDeleteTask }) {
